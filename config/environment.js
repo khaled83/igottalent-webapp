@@ -20,6 +20,17 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    
+    torii: {
+      sessionServiceName: 'session',
+      providers: {
+        'facebook-oauth2': {
+          apiKey: "1812832325605603",
+          // TODO @DepOps: user env variaable that follows environment settings
+          redirectUri: "http://localhost:4200/torii/redirect.html"
+        }
+      }
     }
   };
 
