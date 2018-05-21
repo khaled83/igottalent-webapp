@@ -28,7 +28,8 @@ module.exports = function(environment) {
         'facebook-oauth2': {
           apiKey: "1812832325605603",
           // TODO @DepOps: user env variaable that follows environment settings
-          redirectUri: "http://localhost:4200/torii/redirect.html"
+          redirectUri: "http://localhost:4200/torii/redirect.html",
+          tokenExchangeUri: "http://localhost:3000/token"
         }
       }
     }

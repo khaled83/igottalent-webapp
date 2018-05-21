@@ -1,3 +1,5 @@
 <h1>Toys List</h1>
 
-{{outlet}}
+{{#each model as |toy|}}
+  <p>{{toy.name}}</p>
+{{/each}}
