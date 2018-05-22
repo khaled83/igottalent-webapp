@@ -1,0 +1,62 @@
+<h1>Videos list</h1>
+
+<p>
+  {{link-to "New Video" "videos.new" }}
+</p>
+
+{{#if model.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Title
+        </th>
+        <th>
+          Genre
+        </th>
+        <th>
+          Url
+        </th>
+        <th>
+          User
+        </th>
+        <th colspan="3">
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |video|}}
+        <tr>
+          <td>
+            {{video.title}}
+          </td>
+          <td>
+            {{video.genre}}
+          </td>
+          <td>
+            {{video.url}}
+          </td>
+<!--
+          <td>
+            {{video.userId}}
+          </td>
+-->
+          <td>
+            {{link-to "Edit" "videos.edit" video}}
+          </td>
+          <td>
+            {{link-to "Show" "videos.show" video}}
+          </td>
+          <td>
+            <a href="#" {{action "remove" video}}>Remove</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p id="blankslate">
+    No Videos found
+  </p>
+{{/if}}

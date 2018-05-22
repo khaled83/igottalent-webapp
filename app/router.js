@@ -8,6 +8,18 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('login');
+  this.route('videos', function() {
+    this.route('index');
+    this.route('new');
+
+    this.route('edit', {
+      path: ':video_id/edit'
+    });
+
+    this.route('show', {
+      path: ':video_id'
+    });
+  });
 });
 
 export default Router;

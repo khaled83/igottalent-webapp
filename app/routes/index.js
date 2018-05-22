@@ -7,6 +7,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     this.get('session').authorize('authorizer:facebook', (headerName, headerValue) => {
       headers[headerName] = headerValue;
     });
-    return Ember.$.ajax('http://localhost:3000/users', { headers });
+    return [];
+//    return Ember.$.ajax('http://localhost:3000/users', { headers });
   }
 });
