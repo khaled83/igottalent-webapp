@@ -1,6 +1,8 @@
 import Route from '@ember/routing/route';
+import { inject } from '@ember/service';
 
 export default Route.extend({
+  flashMessages: inject(),
   actions: {
     remove: function(model) {
       if(confirm('Are you sure?')) {
@@ -12,8 +14,8 @@ export default Route.extend({
       const router = this;
       model.save().then(function() {
       }, function() {
-        console.log('Failed to save the model');
-        // router.get('notifier').error('Failed to save the model');
+        router.get('flashMessages').danger('Failed to save video!');
+        model.rollbackAttributes();
       });
     }
   },
