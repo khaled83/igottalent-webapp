@@ -1,13 +1,13 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
-export default Ember.Mixin.create({
+export default Mixin.create({
   actions: {
     save: function() {
       var route = this;
       this.currentModel.save().then(function() {
         route.transitionTo('videos');
       }, function() {
-        console.log('Failed to save the model');
+        // console.log('Failed to save the model');
       });
     },
 

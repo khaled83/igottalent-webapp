@@ -1,6 +1,7 @@
-import Ember from 'ember';
 import { module, test } from 'qunit';
 import startApp from '../helpers/start-app';
+import { run } from '@ember/runloop';
+import { visit, currentPath, andThen, click, fillIn  } from '@ember/test-helpers';
 
 var application;
 var originalConfirm;
@@ -16,7 +17,7 @@ module('Acceptance: Video', {
     };
   },
   afterEach: function() {
-    Ember.run(application, 'destroy');
+    run(application, 'destroy');
     window.confirm = originalConfirm;
     confirmCalledWith = null;
   }

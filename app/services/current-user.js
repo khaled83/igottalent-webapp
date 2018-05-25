@@ -1,9 +1,9 @@
-import Ember from 'ember';
-
-const { inject: { service }, isEmpty, RSVP } = Ember;
+import { inject as service } from '@ember/service';
+import RSVP from 'rsvp';
+import Service from '@ember/service';
 
 // @see https://github.com/simplabs/ember-simple-auth/blob/master/guides/managing-current-user.md
-export default Ember.Service.extend({
+export default Service.extend({
   session: service('session'),
   store: service(),
 
