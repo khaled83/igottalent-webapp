@@ -1,5 +1,14 @@
 <!--<h1>Welcome to the Toys Store</h1>-->
 
+<nav class="navbar" style="background-color: white;">
+  <div class="btn-group">
+    <img src="{{currentUser.user.imageUrl}}" alt="Avatar" class="avatar dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="#" onclick={{action "logout"}}>Logout</a>
+    </div>
+  </div>
+</nav>
+
 <!--
 API Key: {{config.apiKey}} <br />
 Authorization Code: {{session.data.authenticated.authorizationCode}} <br />
@@ -7,35 +16,11 @@ currentUser: {{currentUser.user.name}} <br/>
 -->
 
 <!-- Header -->
-<!-- Template @see: https://www.w3schools.com/w3css/w3css_templates.asp 
+<!-- Template @see: https://www.w3schools.com/w3css/tryw3css_templates_photo.htm
+                    https://www.w3schools.com/w3css/w3css_templates.asp 
                     https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_photo&stacked=h -->
-<title>W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body,h1 {font-family: "Montserrat", sans-serif}
-img {margin-bottom: -7px}
-.w3-row-padding img {margin-bottom: 12px}
-</style>
-
 {{#each flashMessages.queue as |flash|}}
   {{flash-message flash=flash}}
 {{/each}}
-
-<!-- Sidebar -->
-<nav class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding-top:150px" id="mySidebar">
-  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-black w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
-    <i class="fa fa-remove"></i>
-  </a>
-  <div class="w3-bar-block w3-center">
-    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">About</a>
-    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Photos</a>
-    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Shop</a>
-    <a href="#" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Contact</a>
-  </div>
-</nav>
 
 {{yield}}

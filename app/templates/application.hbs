@@ -1,12 +1,10 @@
 {{head-layout}}
 
 {{#if session.isAuthenticated}}
-    <button onclick={{action "logout"}}>Log Out</button>
+  {{html-header currentUser=currentUser logout=(action "logout")}}
 {{else}}
     Unauthenticated
 {{/if}}
-
-{{html-header}}
 
 {{outlet}}
 
