@@ -1,11 +1,21 @@
 <!--<h1>Welcome to the Toys Store</h1>-->
 
-<nav class="navbar" style="background-color: white;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="btn-group">
     <img src="{{currentUser.user.imageUrl}}" alt="Avatar" class="avatar dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <div class="dropdown-menu">
       <a class="dropdown-item" href="#" onclick={{action "logout"}}>Logout</a>
     </div>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 10px; padding: 10px;">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        {{#link-to "index" class="nav-link"}}Home <span class="sr-only">(current)</span>{{/link-to}}
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
   </div>
 </nav>
 
@@ -22,5 +32,16 @@ currentUser: {{currentUser.user.name}} <br/>
 {{#each flashMessages.queue as |flash|}}
   {{flash-message flash=flash}}
 {{/each}}
+
+<!-- Header -->
+<div class="w3-opacity">
+<!--<span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></span> -->
+<div class="w3-clear"></div>
+<header class="w3-center w3-margin-bottom">
+  <h1><b>I GOT TALENT</b></h1>
+  <p><b>Share your talent with the globe.</b></p>
+<!--<p class="w3-padding-16"><button class="w3-button w3-black" onclick="myFunction()">Toggle Grid Padding</button></p>-->
+</header>
+</div>
 
 {{yield}}
