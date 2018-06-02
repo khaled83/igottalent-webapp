@@ -19,6 +19,7 @@ Router.map(function() {
     this.route('show', {
       path: ':video_id'
     });
+    this.route('index-admin');
   });
 });
 

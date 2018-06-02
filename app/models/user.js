@@ -7,5 +7,6 @@ export default DS.Model.extend({
   facebookId: DS.attr('string'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
-  admin: DS.attr('boolean')
+  admin: DS.attr('boolean'),
+  videos: DS.hasMany('video')
 });

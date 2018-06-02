@@ -1,0 +1,93 @@
+<!-- Header -->
+<div class="w3-opacity">
+<div class="w3-clear"></div>
+<header class="w3-center w3-margin-bottom">
+  <h1><b>User Uploads</b></h1>
+  <p><b>Manage videos uploaded by users.</b></p>
+</header>
+</div>
+
+{{#if model.length}}
+<div class="table-responsive" style="width: 98%; margin: 0 auto;">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">
+          #
+        </th>
+        <th scope="col">
+          User
+        </th>
+        <th scope="col">
+          IGT
+        </th>
+        <th scope="col">
+          YouTube
+        </th>
+        <th scope="col">
+          Title
+        </th>
+        <th scope="col">
+          Genre
+        </th>
+        <th scope="col">
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |video index|}}
+        <tr>
+          <th scope="row">{{add index 1}}</th>
+          <td>
+            <img src="{{video.user.imageUrl}}" alt="Avatar" class="avatar dropdown-toggle small" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </td>
+          <td>
+            {{#link-to "videos.show" video.id}}
+              <img src="https://img.youtube.com/vi/{{video.videoId}}/default.jpg" style="height: 27px;">
+            {{/link-to}}
+          </td>
+          <td>
+            <a href="{{video.url}}" target="_blank"><i class="fab fa-youtube fa-2x" style="color: red;"></i></a>
+          </td>
+          <td>
+            {{link-to video.title "videos.show" video.id}}
+          </td>
+          <td>
+            {{video.genre}}
+          </td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+              <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Actions
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                  {{#link-to "videos.show" video type="button" class="btn btn-primary btn-sm dropdown-item"}}
+                  <i class="far fa-eye"></i> View
+                  {{/link-to}}
+                  <a class="dropdown-item" href="#" {{action "toggleApproved" video}}>
+                    <i class="far fa-thumbs-{{if video.approved "down" "up"}}"></i>
+                    {{if video.approved "Hide" "Approve"}}
+                  </a>
+                  <a class="dropdown-item" href="#" {{action "remove" video}}><i class="far fa-trash-alt"></i> Delete</a>
+                </div>
+              </div>
+            </div>
+            {{#if video.approved}}
+              <span class="badge badge-success">Approved</span>
+            {{else}}
+              <span class="badge badge-warning">Pending</span>
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{else}}
+  <p id="blankslate">
+    No Videos found
+  </p>
+{{/if}}
+
+{{outlet}}

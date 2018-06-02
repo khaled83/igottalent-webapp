@@ -1,9 +1,8 @@
 import Route from '@ember/routing/route';
-import Ember from 'ember';
 
 export default Route.extend({
   actions: {
-    didTransition(transition) {
+    didTransition() {
       // solves a problem that FB social doesn't appear without page relaod
       window.FB.init({
         appId      : '1812832325605603',
