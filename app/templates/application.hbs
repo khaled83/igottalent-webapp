@@ -1,10 +1,9 @@
 {{head-layout}}
 
+{{facebook-social-jssdk}}
 {{#if session.isAuthenticated}}
-  {{facebook-social-jssdk}}
   {{html-header currentUser=currentUser logout=(action "logout")}}
 {{else}}
-    Unauthenticated
 {{/if}}
 
 {{outlet}}
