@@ -22,16 +22,16 @@
 {{#if model.length}}
   {{#each model as |video index|}}
     <div class="row border">
-      <div class="col" style="margin-bottom: 20px; margin-top: 20px;">
+      <div class="col mt-3 mb-3">
         <div class="row">
           <!-- Left block with video -->
-          <div class="col-10">
+          <div class="col-8">
             <!-- # -->
             <div class="d-inline-block align-top font-weight-bold">#{{add index 1}}</div>&nbsp;
             <!-- YouTube thumbnail -->
             <div class="d-inline-block align-top" style="margin-left: 15px;">
               {{#link-to "videos.show" video.id}}
-                <img src="https://img.youtube.com/vi/{{video.videoId}}/default.jpg">
+                <img src="https://img.youtube.com/vi/{{video.videoId}}/default.jpg" style="height: 80px;">
               {{/link-to}}
             </div>
             <!-- Title & genre -->
@@ -39,61 +39,87 @@
               {{link-to video.title "videos.show" video.id class="h5"}}<br>
               {{video.genre}}<br>
               <!-- YouTube Icon -->
-              <a href="{{video.url}}" target="_blank"><i class="fab fa-youtube fa-2x" style="color: red;"></i></a>
+              <div class="tooltip-w3 tooltip-w3-pos-bottom tooltip-w3-arr-pos-top"><a href="{{video.url}}" target="_blank"><i class="fab fa-youtube fa-2x" style="color: red;"></i></a>
+                <span class="tooltiptext-w3 tooltiptext-w3-pos-bottom tooltiptext-w3-arr-pos-top">Watch in YouTube</span>
+              </div>
             </div>
           </div>
-          <!-- Right block with actions -->
-          <div class="col-2">
-            <div class="mb-1">
-              <!-- User approval -->
-              <div class="tooltip-w3 tooltip-w3-pos-left tooltip-w3-arr-pos-right">
-                <i class="far fa-user"></i>
-                {{#if video.approved}}
-                  <span class="badge badge-success">Approved</span>
-                  <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">You approved </span>
+          <!-- Right block with multiple divs -->
+          <div class="col-4">
+            <div class="row">
+              <!-- LIVE icon -->
+              <div class="col text-right">
+                {{#if video.live}}
+                  <h4 class="mt-0 anim-fadein-infinite">
+                    <span class="badge badge-success" style="font-variant: small-caps;"><i class="fab fa-youtube-square"></i>&nbsp;&nbsp;&nbsp;Live&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  </h4>
                 {{else}}
-                  <span class="badge badge-warning" title="World Health Organization">Pending</span>
-                  <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">Pending your approval</span>
+                  <h4 class="mt-0">
+                    <span class="badge badge-light" style="font-variant: small-caps;"><i class="fab fa-youtube-square"></i> Offline</span>
+                  </h4>
                 {{/if}}
+                <span class="small">0 views</span>
               </div>
-              <br>
-              <!-- Admin approval -->
-              <div class="tooltip-w3 tooltip-w3-pos-left tooltip-w3-arr-pos-right">
-                <i class="fas fa-lock"></i>
-                {{#if video.approved}}
-                  <span class="badge badge-success">Approved</span>
-                  <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">Admin approved </span>
-                {{else}}
-                  <span class="badge badge-warning" title="World Health Organization">Pending</span>
-                  <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">Pending admin </span>
-                {{/if}}
-              </div>
-            </div>
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+              <div class="col-4 text-right">
               <!-- Actions -->
-              <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Actions
-                </button>
-                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                  <!-- Toogle Approved -->
-                  <a class="dropdown-item" href="#" {{action "toggleApproved" video}}>
-                    <i class="far fa-thumbs-{{if video.approved "down" "up"}}"></i>&nbsp;
-                    {{if video.approved "Hide" "Approve"}}
-                  </a>
-                  <!-- Edit -->
-                  {{#link-to "videos.edit" video type="button" class="dropdown-item"}}
-                    <i class="far fa-edit"></i> Edit
-                  {{/link-to}}
-                  <div class="dropdown-divider"></div>
-                  <!-- Delete -->
-                  <a class="dropdown-item" href="#" {{action "remove" video}}>
-                    <i class="far fa-trash-alt"></i> Delete
-                  </a>
+                <div class="mb-1">
+                  <!-- User approval -->
+                  <div class="tooltip-w3 tooltip-w3-pos-left tooltip-w3-arr-pos-right">
+                    <i class="far fa-user"></i>
+                    {{#if video.approvedUser}}
+                      <span class="badge badge-success">Approved</span>
+                      <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">You approved </span>
+                    {{else}}
+                      <span class="badge badge-warning" title="World Health Organization">&nbsp;Pending&nbsp;&nbsp;</span>
+                      <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">Pending your approval</span>
+                    {{/if}}
+                  </div>
+                  <!-- Admin approval -->
+                  <div class="tooltip-w3 tooltip-w3-pos-left tooltip-w3-arr-pos-right">
+                    <i class="fas fa-lock"></i>
+                    {{#if video.approvedAdmin}}
+                      <span class="badge badge-success">Approved</span>
+                      <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">Admin approved </span>
+                    {{else}}
+                      <span class="badge badge-warning" title="World Health Organization">&nbsp;Pending&nbsp;&nbsp;</span>
+                      <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">Pending admin </span>
+                    {{/if}}
+                  </div>
+                </div>
+                <!-- Actions -->
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                  <!-- Actions -->
+                  <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Actions
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                      <!-- Toogle Approved -->
+                      <a class="dropdown-item" href="#" {{action "toggleApproved" video}}>
+                        <i class="far fa-thumbs-{{if video.approvedUser "down" "up"}}"></i>&nbsp;
+                        {{if video.approvedUser "Hide" "Approve"}}
+                      </a>
+                      <!-- Edit -->
+                      {{#link-to "videos.edit" video type="button" class="dropdown-item"}}
+                        <i class="far fa-edit"></i> Edit
+                      {{/link-to}}
+                      <div class="dropdown-divider"></div>
+                      <!-- Delete -->
+                      <a class="dropdown-item" href="#" {{action "remove" video}}>
+                        <i class="far fa-trash-alt"></i> Delete
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <!-- Likes & Comments Summary -->
+              <div class="col-2 text-right">
+                <i class="far fa-thumbs-up"></i> 0
+                <i class="far fa-comments"></i> 0
+              </div>
+            <!-- END Right block's row -->
             </div>
-            <!-- Status labels -->
+          <!-- END Right block col-4 -->
           </div>
         </div>
       </div>

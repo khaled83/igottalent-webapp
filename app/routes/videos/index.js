@@ -19,6 +19,15 @@ export default Route.extend({
       if(confirm('Are you sure?')) {
         model.destroyRecord();
       }
+    },
+    toggleApproved: function(model) {
+      model.toggleProperty('approvedUser');
+      const router = this;
+      model.save().then(function() {
+      }, function() {
+        router.get('flashMessages').danger('Failed to save video!');
+        model.rollbackAttributes();
+      });
     }
   }
 });

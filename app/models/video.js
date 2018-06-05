@@ -5,8 +5,12 @@ export default DS.Model.extend({
   genre: DS.attr('string'),
   url: DS.attr('string'),
   videoId: DS.attr('string'),
-  approved: DS.attr('boolean'),
-  user: DS.belongsTo('user'),
+  approvedAdmin: DS.attr('boolean'),
+  approvedUser: DS.attr('boolean'),
+  live: DS.attr('boolean'),
+  
+  // ASSOCIATIONS //
+  user: DS.belongsTo('user')
   
   //=== COMPUTED PROPERTIES ===
   
