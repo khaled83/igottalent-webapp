@@ -1,0 +1,10 @@
+{{#if video.live}}
+  <h4 class="mt-0 anim-fadein-infinite">
+    <span class="badge badge-success" style="font-variant: small-caps;"><i class="fab fa-youtube-square"></i>&nbsp;&nbsp;&nbsp;Live&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  </h4>
+{{else}}
+  <h4 class="mt-0">
+    <span class="badge badge-light" style="font-variant: small-caps;"><i class="fab fa-youtube-square"></i> Offline</span>
+  </h4>
+{{/if}}
+{{yield}}
