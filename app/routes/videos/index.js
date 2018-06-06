@@ -20,8 +20,8 @@ export default Route.extend({
         model.destroyRecord();
       }
     },
-    toggleApproved: function(model) {
-      model.toggleProperty('approvedUser');
+    toggleApproved: function(model, propertyName) {
+      model.toggleProperty(propertyName);
       const router = this;
       model.save().then(function() {
       }, function() {

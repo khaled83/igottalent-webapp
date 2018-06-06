@@ -1,0 +1,26 @@
+<!-- Bootstrap dropdown -->
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Actions
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      <!-- Toogle Approved -->
+      <a class="dropdown-item" href="#" {{action "toggleApproved" video propertyName video}}>
+        <i class="far fa-thumbs-{{if (get video propertyName) "down" "up"}}"></i>&nbsp;
+        {{if (get video propertyName) "Hide" "Approve"}}
+      </a>
+      <!-- Edit -->
+      {{#link-to "videos.edit" video type="button" class="dropdown-item"}}
+        <i class="far fa-edit"></i> Edit
+      {{/link-to}}
+      <div class="dropdown-divider"></div>
+      <!-- Delete -->
+      <a class="dropdown-item" href="#" {{action "remove" video}}>
+        <i class="far fa-trash-alt"></i> Delete
+      </a>
+    </div>
+  </div>
+</div>
+
+{{yield}}

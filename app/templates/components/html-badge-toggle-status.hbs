@@ -1,0 +1,22 @@
+{{yield}}
+
+<style>
+  .badge {
+    cursor: default;  
+  }
+  span.badge {
+    width: 70px;
+  }
+</style>
+
+<div class="tooltip-w3 tooltip-w3-pos-left tooltip-w3-arr-pos-right">
+  {{#if (get model propertyName)}}
+    <i class="{{onIconClass}}"></i>
+    <span class="badge badge-success">{{onText}}</span>
+    <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">{{onTooltip}}</span>
+  {{else}}
+    <i class="{{offIconClass}}"></i>
+    <span class="badge badge-warning">{{offText}}</span>
+    <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">{{offTooltip}}</span>
+  {{/if}}
+</div>

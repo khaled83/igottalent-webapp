@@ -31,8 +31,9 @@
           <th scope="col">
             Genre
           </th>
-          <th scope="col">
-          </th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -56,29 +57,16 @@
             <td>
               {{video.genre}}
             </td>
+            <td class="text-center">
+              <!-- User approval -->
+              {{html-badge-toggle-status model=video propertyName="approvedUser" onIconClass="far fa-user" offIconClass="fas fa-user" onText="Approved" onTooltip="User approved" offText="Pending" offTooltip="Pending user approval"}}
+            </td>
             <td>
-              <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                <div class="btn-group" role="group">
-                  <button id="btnGroupDrop1" type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Actions
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    {{#link-to "videos.show" video type="button" class="btn btn-primary btn-sm dropdown-item"}}
-                    <i class="far fa-eye"></i> View
-                    {{/link-to}}
-                    <a class="dropdown-item" href="#" {{action "toggleApproved" video}}>
-                      <i class="far fa-thumbs-{{if video.approvedAdmin "down" "up"}}"></i>
-                      {{if video.approvedAdmin "Hide" "Approve"}}
-                    </a>
-                    <a class="dropdown-item" href="#" {{action "remove" video}}><i class="far fa-trash-alt"></i> Delete</a>
-                  </div>
-                </div>
-              </div>
-              {{#if video.approvedAdmin}}
-                <span class="badge badge-success">Approved</span>
-              {{else}}
-                <span class="badge badge-warning">Pending</span>
-              {{/if}}
+              <!-- Admin approval -->
+              {{html-badge-toggle-status model=video propertyName="approvedAdmin" onIconClass="fas fa-lock-open" offIconClass="fas fa-lock" onText="Approved" onTooltip="Admin approved" offText="Pending" offTooltip="Pending admin"}}
+            </td>
+            <td>
+              {{html-dropdown-video-actions video=video toggleApproved="toggleApproved" propertyName="approvedAdmin" edit="edit" remove="remove"}}
             </td>
           </tr>
         {{/each}}

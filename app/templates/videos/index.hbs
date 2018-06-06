@@ -13,12 +13,6 @@
   {{/link-to}}
 </p>
 
-<style>
-  .badge {
-    cursor: default;  
-  }
-</style>
-  
 {{#if model.length}}
   {{#each model as |video index|}}
     <div class="row border">
@@ -27,7 +21,7 @@
           <!-- Left block with video -->
           <div class="col-8">
             <!-- # -->
-            <div class="d-inline-block align-top font-weight-bold">#{{add index 1}}</div>&nbsp;
+            <div class="d-inline-block align-top font-weight-bold">#{{add index 1}}</div>
             <!-- YouTube thumbnail -->
             <div class="d-inline-block align-top" style="margin-left: 15px;">
               {{#link-to "videos.show" video.id}}
@@ -64,53 +58,12 @@
               <!-- Actions -->
                 <div class="mb-1">
                   <!-- User approval -->
-                  <div class="tooltip-w3 tooltip-w3-pos-left tooltip-w3-arr-pos-right">
-                    <i class="far fa-user"></i>
-                    {{#if video.approvedUser}}
-                      <span class="badge badge-success">Approved</span>
-                      <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">You approved </span>
-                    {{else}}
-                      <span class="badge badge-warning" title="World Health Organization">&nbsp;Pending&nbsp;&nbsp;</span>
-                      <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">Pending your approval</span>
-                    {{/if}}
-                  </div>
+                  {{html-badge-toggle-status model=video propertyName="approvedUser" onIconClass="far fa-user" offIconClass="fas fa-user" onText="Approved" onTooltip="You approved" offText="Pending" offTooltip="Pending your approval"}}
                   <!-- Admin approval -->
-                  <div class="tooltip-w3 tooltip-w3-pos-left tooltip-w3-arr-pos-right">
-                    <i class="fas fa-lock"></i>
-                    {{#if video.approvedAdmin}}
-                      <span class="badge badge-success">Approved</span>
-                      <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">Admin approved </span>
-                    {{else}}
-                      <span class="badge badge-warning" title="World Health Organization">&nbsp;Pending&nbsp;&nbsp;</span>
-                      <span class="tooltiptext-w3 tooltiptext-w3-pos-left tooltiptext-w3-arr-pos-right">Pending admin </span>
-                    {{/if}}
-                  </div>
+                  {{html-badge-toggle-status model=video propertyName="approvedAdmin" onIconClass="fas fa-lock-open" offIconClass="fas fa-lock" onText="Approved" onTooltip="Admin approved" offText="Pending" offTooltip="Pending admin"}}
                 </div>
-                <!-- Actions -->
-                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                  <!-- Actions -->
-                  <div class="btn-group" role="group">
-                    <button id="btnGroupDrop1" type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Actions
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                      <!-- Toogle Approved -->
-                      <a class="dropdown-item" href="#" {{action "toggleApproved" video}}>
-                        <i class="far fa-thumbs-{{if video.approvedUser "down" "up"}}"></i>&nbsp;
-                        {{if video.approvedUser "Hide" "Approve"}}
-                      </a>
-                      <!-- Edit -->
-                      {{#link-to "videos.edit" video type="button" class="dropdown-item"}}
-                        <i class="far fa-edit"></i> Edit
-                      {{/link-to}}
-                      <div class="dropdown-divider"></div>
-                      <!-- Delete -->
-                      <a class="dropdown-item" href="#" {{action "remove" video}}>
-                        <i class="far fa-trash-alt"></i> Delete
-                      </a>
-                    </div>
-                  </div>
-                </div>
+                <!-- Admin -->
+                {{html-dropdown-video-actions video=video toggleApproved="toggleApproved" propertyName="approvedUser" edit="edit" remove="remove"}}
               </div>
               <!-- Likes & Comments Summary -->
               <div class="col-2 text-right">
