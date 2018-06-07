@@ -1,6 +1,9 @@
-<p>
-  {{link-to "Video list" "videos.index" }}
-</p>
+{{html-header-title title="Upload Video" subtitle="Upload your YouTube recorded video now."}}
 
-<h1>New Video</h1>
-{{partial "videos/form"}}
+<div class="container border pt-3 pb-3">
+  {{partial "videos/form"}}
+  <p class="small mt-2">{{link-to "Back to video list" "videos.index" }}</p>
+  {{#if model.videoIdComputed}}
+    {{ember-youtube ytid=model.videoIdComputed}}
+  {{/if}}
+</div>
