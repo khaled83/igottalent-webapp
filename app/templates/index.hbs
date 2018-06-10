@@ -3,72 +3,53 @@
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-content" style="max-width:1500px">
-
 <!-- Photo Grid -->
-<div class="w3-row" id="myGrid" style="margin-bottom:128px">
+{{#each (range 0 model.currentPage) as |page|}}  
+<div class="w3-row" id="myGrid"> <!-- style="margin-bottom:128px" -->
   <div class="w3-third">
-    {{#link-to "videos.show" (get (object-at 0 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 0 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
+    {{#link-to "videos.show" (get (object-at (add (mult page model.perPage) 0) model) "id")}}
+      <img src="{{get (object-at (add (mult page model.perPage) 0) model) "youTubeImgMaxRes"}}" style="width:100%">
     {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 1 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 1 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
+    {{#link-to "videos.show" (get (object-at (add (mult page model.perPage) 1) model) "id")}}
+      <img src="{{get (object-at (add (mult page model.perPage) 1) model) "youTubeImgMaxRes"}}" style="width:100%">
     {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 2 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 2 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
-    {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 3 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 3 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
-    {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 4 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 4 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
-    {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 5 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 5 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
+    {{#link-to "videos.show" (get (object-at (add (mult page model.perPage) 2) model) "id")}}
+      <img src="{{get (object-at (add (mult page model.perPage) 2) model) "youTubeImgMaxRes"}}" style="width:100%">
     {{/link-to}}
   </div>
 
   <div class="w3-third">
-    {{#link-to "videos.show" (get (object-at 6 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 6 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
+    {{#link-to "videos.show" (get (object-at (add (mult page model.perPage) 3) model) "id")}}
+      <img src="{{get (object-at (add (mult page model.perPage) 3) model) "youTubeImgMaxRes"}}" style="width:100%">
     {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 7 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 7 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
+    {{#link-to "videos.show" (get (object-at (add (mult page model.perPage) 4) model) "id")}}
+      <img src="{{get (object-at (add (mult page model.perPage) 4) model) "youTubeImgMaxRes"}}" style="width:100%">
     {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 8 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 8 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
-    {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 9 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 9 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
-    {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 10 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 10 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
-    {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 11 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 11 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
+    {{#link-to "videos.show" (get (object-at (add (mult page model.perPage) 5) model) "id")}}
+      <img src="{{get (object-at (add (mult page model.perPage) 5) model) "youTubeImgMaxRes"}}" style="width:100%">
     {{/link-to}}
   </div>
 
   <div class="w3-third">
-    {{#link-to "videos.show" (get (object-at 12 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 12 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
+    {{#link-to "videos.show" (get (object-at (add (mult page model.perPage) 6) model) "id")}}
+      <img src="{{get (object-at (add (mult page model.perPage) 6) model) "youTubeImgMaxRes"}}" style="width:100%">
     {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 13 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 13 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
+    {{#link-to "videos.show" (get (object-at (add (mult page model.perPage) 7) model) "id")}}
+      <img src="{{get (object-at (add (mult page model.perPage) 7) model) "youTubeImgMaxRes"}}" style="width:100%">
     {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 14 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 14 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
-    {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 15 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 15 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
-    {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 16 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 16 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
-    {{/link-to}}
-    {{#link-to "videos.show" (get (object-at 17 model) "id")}}
-      <img src="https://img.youtube.com/vi/{{get (object-at 17 model) "videoId"}}/maxresdefault.jpg" style="width:100%">
+    {{#link-to "videos.show" (get (object-at (add (mult page model.perPage) 8) model) "id")}}
+      <img src="{{get (object-at (add (mult page model.perPage) 8) model) "youTubeImgMaxRes"}}" style="width:100%">
     {{/link-to}}
   </div>
 </div>
+{{/each}}
 
+<!-- Infinity loader -->
+{{#infinity-loader infinityModel=model infinityLoad=(action "loadMoreVideo" model) infinityLoad="infinityLoad" loadedText="Loaded!"}}
+  <div class="text-center mt-2">
+    <span class="shimmer" style="font-size: 20px">laoding more videos...</span>
+  </div>
+{{/infinity-loader}}
+  
 <!-- End Page Content -->
 </div>

@@ -1,9 +1,22 @@
+<!-- header -->
 {{html-header-title title="Upload Video" subtitle="Upload your YouTube recorded video now."}}
-
+<!-- content -->
 <div class="container border pt-3 pb-3">
   {{partial "videos/form"}}
   <p class="small mt-2">{{link-to "Back to video list" "videos.index" }}</p>
   {{#if model.videoIdComputed}}
+    <!-- validates youttube image -->
+    {{html-img model=model validate="validate" invalidate="invalidate"}}
+    <!--  @TODO: refactor/standardize error validation-->
+    {{#if error}}
+      <div class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">Invalid YoutTube Video!</h4>
+        <p>Oh no, it seems the video you are trying to upload is not HD. We do our best to keep the content quality and fun for the audience to enjoy. Please upload your video again to YouTube and make sure it has an HD option. We hope to see you here!</p>
+        <hr>
+        <p class="mb-0"><b>Hint:</b> when uploading an HD video you should be able to <a href="{{model.youTubeImgMaxRes}}" class="font-weight-bold" target="_blank">click here</a> and see snapshot from your show.</p>
+      </div>
+    {{/if}}
+    <!-- YouTube video -->
     {{ember-youtube ytid=model.videoIdComputed}}
   {{/if}}
 </div>

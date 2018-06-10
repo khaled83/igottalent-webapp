@@ -2,7 +2,6 @@
 {{html-header-title title="User Uploads" subtitle="Manage videos uploaded by users."}}
 
 <div class="container">
-  {{#if model.length}}
   <div class="table-responsive" style="width: 98%; margin: 0 auto;">
     <table class="table border">
       <thead>
@@ -33,14 +32,14 @@
       </thead>
       <tbody>
         {{#each model as |video index|}}
-          <tr>
+          <tr class="{{if video.isDeleted 'deleted' ''}}">
             <th scope="row">{{add index 1}}</th>
             <td>
               <img src="{{video.user.imageUrl}}" alt="Avatar" class="avatar dropdown-toggle small" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             </td>
             <td>
               {{#link-to "videos.show" video.id}}
-                <img src="https://img.youtube.com/vi/{{video.videoId}}/default.jpg" style="height: 27px;">
+                <img src="{{video.youTubeImgMaxRes}}" style="width: 48px; height: 27px;">
               {{/link-to}}
             </td>
             <td>
@@ -67,15 +66,22 @@
               {{html-dropdown-video-actions video=video toggleApproved="toggleApproved" propertyName="approvedAdmin" edit="edit" remove="remove"}}
             </td>
           </tr>
+        {{else}}
+          <p id="blankslate">
+            No Videos found
+          </p>
         {{/each}}
+        <!-- Infinity loader -->
       </tbody>
     </table>
   </div>
-  {{else}}
-    <p id="blankslate">
-      No Videos found
-    </p>
-  {{/if}}
+  
+  <!-- Infinity loader -->
+  {{#infinity-loader infinityModel=model infinityLoad=(action "loadMoreVideo" model) infinityLoad="infinityLoad" loadedText="Loaded!"}}
+    <div class="text-center mt-2">
+      <span class="shimmer" style="font-size: 20px">laoding more videos...</span>
+    </div>
+  {{/infinity-loader}}
 </div>
 
 {{outlet}}

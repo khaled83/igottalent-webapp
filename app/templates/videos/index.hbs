@@ -2,74 +2,81 @@
 {{html-header-title title="My Uploads" subtitle="View and manage your uploads."}}
 
 <div class="container">
+<!-- Upload new video -->
 <p>
   {{#link-to "videos.new" type="button" class="btn btn-success btn-lg"}}
   <i class="far fa-plus-square"></i> Upload
   {{/link-to}}
 </p>
-
-{{#if model.length}}
-  {{#each model as |video index|}}
-    <div class="row border">
-      <div class="col mt-3 mb-3">
-        <div class="row">
-          <!-- Left block with video -->
-          <div class="col-8">
-            <!-- # -->
-            <div class="d-inline-block align-top font-weight-bold">#{{add index 1}}</div>
-            <!-- YouTube thumbnail -->
-            <div class="d-inline-block align-top" style="margin-left: 15px;">
-              {{#link-to "videos.show" video.id}}
-                <img src="https://img.youtube.com/vi/{{video.videoId}}/default.jpg" style="height: 80px;">
-              {{/link-to}}
-            </div>
-            <!-- Title & genre -->
-            <div class="d-inline-block align-top" style="margin-left: 15px;">
-              {{link-to video.title "videos.show" video.id class="h5"}}<br>
-              {{video.genre}}<br>
-              <!-- YouTube Icon -->
-              <div class="tooltip-w3 tooltip-w3-pos-bottom tooltip-w3-arr-pos-top"><a href="{{video.url}}" target="_blank"><i class="fab fa-youtube fa-2x" style="color: red;"></i></a>
-                <span class="tooltiptext-w3 tooltiptext-w3-pos-bottom tooltiptext-w3-arr-pos-top">Watch in YouTube</span>
-              </div>
+<!-- Video list -->
+{{#each model as |video index|}}
+  <div class="row border {{if video.isDeleted 'deleted' ''}}">
+    <div class="col mt-3 mb-3">
+      <div class="row">
+        <!-- Left block with video -->
+        <div class="col-8">
+          <!-- # -->
+          <div class="d-inline-block align-top font-weight-bold">#{{add index 1}}</div>
+          <!-- YouTube thumbnail -->
+          <div class="d-inline-block align-top" style="margin-left: 15px;">
+            {{#link-to "videos.show" video.id}}
+              <img src="{{video.youTubeImgMaxRes}}" style="width: 142px; height: 80px;">
+            {{/link-to}}
+          </div>
+          <!-- Title & genre -->
+          <div class="d-inline-block align-top" style="margin-left: 15px;">
+            {{link-to video.title "videos.show" video.id class="h5"}}<br>
+            {{video.genre}}<br>
+            <!-- YouTube Icon -->
+            <div class="tooltip-w3 tooltip-w3-pos-bottom tooltip-w3-arr-pos-top"><a href="{{video.url}}" target="_blank"><i class="fab fa-youtube fa-2x" style="color: red;"></i></a>
+              <span class="tooltiptext-w3 tooltiptext-w3-pos-bottom tooltiptext-w3-arr-pos-top">Watch in YouTube</span>
             </div>
           </div>
-          <!-- Right block with multiple divs -->
-          <div class="col-4">
-            <div class="row">
-              <!-- LIVE icon -->
-              <div class="col text-right">
-                {{html-badge-live video=video}}
-                <span class="small">0 views</span>
-              </div>
-              <div class="col-4 text-right">
-              <!-- Actions -->
-                <div class="mb-1">
-                  <!-- User approval -->
-                  {{html-badge-toggle-status model=video propertyName="approvedUser" onIconClass="far fa-user" offIconClass="fas fa-user" onText="Approved" onTooltip="You approved" offText="Pending" offTooltip="Pending your approval"}}
-                  <!-- Admin approval -->
-                  {{html-badge-toggle-status model=video propertyName="approvedAdmin" onIconClass="fas fa-lock-open" offIconClass="fas fa-lock" onText="Approved" onTooltip="Admin approved" offText="Pending" offTooltip="Pending admin"}}
-                </div>
-                <!-- Admin -->
-                {{html-dropdown-video-actions video=video toggleApproved="toggleApproved" propertyName="approvedUser" edit="edit" remove="remove"}}
-              </div>
-              <!-- Likes & Comments Summary -->
-              <div class="col-2 text-right">
-                <i class="far fa-thumbs-up"></i> 0
-                <i class="far fa-comments"></i> 0
-              </div>
-            <!-- END Right block's row -->
+        </div>
+        <!-- Right block with multiple divs -->
+        <div class="col-4">
+          <div class="row">
+            <!-- LIVE icon -->
+            <div class="col text-right">
+              {{html-badge-live video=video}}
+              <span class="small">0 views</span>
             </div>
-          <!-- END Right block col-4 -->
+            <div class="col-4 text-right">
+            <!-- Actions -->
+              <div class="mb-1">
+                <!-- User approval -->
+                {{html-badge-toggle-status model=video propertyName="approvedUser" onIconClass="far fa-user" offIconClass="fas fa-user" onText="Approved" onTooltip="You approved" offText="Pending" offTooltip="Pending your approval"}}
+                <!-- Admin approval -->
+                {{html-badge-toggle-status model=video propertyName="approvedAdmin" onIconClass="fas fa-lock-open" offIconClass="fas fa-lock" onText="Approved" onTooltip="Admin approved" offText="Pending" offTooltip="Pending admin"}}
+              </div>
+              <!-- Admin -->
+              {{html-dropdown-video-actions video=video toggleApproved="toggleApproved" propertyName="approvedUser" edit="edit" remove="remove"}}
+            </div>
+            <!-- Likes & Comments Summary -->
+            <div class="col-2 text-right">
+              <i class="far fa-thumbs-up"></i> 0
+              <i class="far fa-comments"></i> 0
+            </div>
+          <!-- END Right block's row -->
           </div>
+        <!-- END Right block col-4 -->
         </div>
       </div>
     </div>
-  {{/each}}
-{{else}}
+  </div>
+  {{else}}
+  <!-- Empty state -->
   <p id="blankslate">
     No Videos found
   </p>
-{{/if}}
+{{/each}}
+  
+<!-- Infinity loader -->
+{{#infinity-loader infinityModel=model infinityLoad=(action "loadMoreVideo" model) infinityLoad="infinityLoad" loadedText="Loaded!"}}
+  <div class="text-center mt-2">
+    <span class="shimmer" style="font-size: 20px">laoding more videos...</span>
+  </div>
+{{/infinity-loader}}
 </div>
 
 {{outlet}}

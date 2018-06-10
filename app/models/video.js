@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import EmberObject, { computed } from '@ember/object';
+import EmberObject, { computed, observer } from '@ember/object';
 
 export default DS.Model.extend({
   title: DS.attr('string'),
@@ -15,18 +15,21 @@ export default DS.Model.extend({
 
   //=== COMPUTED PROPERTIES ===
   isSaved: computed.not('isNew'),
+  youTubeImgMaxRes: computed('videoId', 'videoIdComputed', function() {
+    let videoId = this.get('videoId') || this.get('videoIdComputed');
+    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  }),
   videoIdComputed: computed('url', function() {
-    let videoId = this.get('videoId');
-    if (videoId) {
-      return videoId;
-    }
-
     let url = this.get('url');
     if (!url) {
       return '';
     }
-
     let regExp = /(youtu.be\/|youtube.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&\"\'>]+)/;
-    return url.match(regExp)[5];
+    try {
+      return url.match(regExp)[5];
+    }
+    catch(error) {
+      return '';
+    }
   }),
 });
