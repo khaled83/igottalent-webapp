@@ -45,7 +45,11 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 ### Deploying
 
-Specify what it takes to deploy your app.
+First time create new heroku app:
+* `heroku create --buildpack https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz`
+
+Deploy changes:
+* `git push heroku master`
 
 ## Further Reading / Useful Links
 
