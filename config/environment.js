@@ -27,12 +27,12 @@ module.exports = function(environment) {
       providers: {
         'facebook-oauth2': {
           apiKey: "1812832325605603",
-          // TODO @DepOps: user env variaable that follows environment settings
+          // TODO @DepOps: user env variable that follows environment settings
           redirectUri: "http://localhost:4200/torii/redirect.html",
           tokenExchangeUri: "http://localhost:3000/token"
         }
       }
-    }
+    },
   };
 
   if (environment === 'development') {
@@ -41,7 +41,12 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    // backend oauth2 token exchange
     ENV.APP.host = 'http://localhost:3000';
+    // frontend oauth2 redirect
+    ENV.torii.providers['facebook-oauth2'].tokenExchangeUri = 'http://localhost:3000/token';
+    // backend host
+    ENV.torii.providers['facebook-oauth2'].redirectUri = "http://localhost:4200/torii/redirect.html";
     ENV['ember-cli-mirage'] = {
       enabled: false
     };
@@ -61,7 +66,12 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
-    ENV.APP.host = 'https://igottalent-rails-4.herokuapp.com/';
+    // backend oauth2 token exchange
+    ENV.torii.providers['facebook-oauth2'].tokenExchangeUri = "https://cryptic-citadel-65071.herokuapp.com/token";
+    // frontend oauth2 redirect
+    ENV.torii.providers['facebook-oauth2'].redirectUri = "https://frozen-mesa-62725.herokuapp.com/torii/redirect.html";
+    // backend host
+    ENV.APP.host = "https://cryptic-citadel-65071.herokuapp.com";
   }
 
   return ENV;
