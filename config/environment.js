@@ -71,7 +71,7 @@ module.exports = function(environment) {
     // frontend oauth2 redirect
     ENV.torii.providers['facebook-oauth2'].redirectUri = "https://frozen-mesa-62725.herokuapp.com/torii/redirect.html";
     // backend host
-    ENV.APP.host = "https://cryptic-citadel-65071.herokuapp.com";
+    ENV.APP.host = "https://young-shelf-10460.herokuapp.com";
   }
 
   return ENV;
