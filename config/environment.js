@@ -67,7 +67,7 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // here you can enable a production-specific feature
     // backend oauth2 token exchange
-    ENV.torii.providers['facebook-oauth2'].tokenExchangeUri = "https://cryptic-citadel-65071.herokuapp.com/token";
+    ENV.torii.providers['facebook-oauth2'].tokenExchangeUri = "https://young-shelf-10460.herokuapp.com/token";
     // frontend oauth2 redirect
     ENV.torii.providers['facebook-oauth2'].redirectUri = "https://frozen-mesa-62725.herokuapp.com/torii/redirect.html";
     // backend host
