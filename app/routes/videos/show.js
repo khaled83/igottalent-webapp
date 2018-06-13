@@ -3,6 +3,8 @@ import Route from '@ember/routing/route';
 export default Route.extend({
   actions: {
     didTransition() {
+//      debugger
+//      $().$(location).attr('href');
       // solves a problem that FB social doesn't appear without page relaod
       window.FB.init({
         appId      : '1812832325605603',
