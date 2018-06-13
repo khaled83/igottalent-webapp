@@ -8,7 +8,7 @@ export default Component.extend({
     // TODO: move this to html-img
     // Replace avatar when error detected
     $('img.avatar').on('error', function(){
-      $(this).attr('src', 'img/avatar.png');
+      $(this).attr('src', '/img/avatar.png');
     });
   },
   
