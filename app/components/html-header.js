@@ -15,6 +15,9 @@ export default Component.extend({
   actions: {
     logout() {
       this.get('logout')();
+    },
+    toggleAdmin() {
+      this.get('toggleAdmin')();
     }
   }
 });

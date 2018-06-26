@@ -2,7 +2,7 @@
 
 {{facebook-social-jssdk}}
 {{#if session.isAuthenticated}}
-  {{html-header currentUser=currentUser logout=(action "logout")}}
+  {{html-header currentUser=currentUser logout=(action "logout") toggleAdmin=(action "toggleAdmin")}}
 {{else}}
 {{/if}}
 
