@@ -6,7 +6,7 @@
   <p class="small mt-2">{{link-to "Back to video list" "videos.index" }}</p>
   {{#if model.videoIdComputed}}
     <!-- validates youttube image -->
-    {{html-img model=model validate="validate" invalidate="invalidate"}}
+    {{html-img-youtube model=model validate="validate" invalidate="invalidate" classNames=(array 'youtube-thumbnail-sm' 'd-none')}}
     <!--  @TODO: refactor/standardize error validation-->
     {{#if error}}
       <div class="alert alert-warning" role="alert">

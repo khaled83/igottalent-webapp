@@ -1,0 +1,40 @@
+<!-- Header -->
+{{html-header-title title="Leaderboard" subtitle="All time top 10 talents."}}
+
+<!-- Leaderboard list -->
+<div class="container">
+  <table class="table border">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">
+          #
+        </th>
+        <th scope="col">
+          Talent
+        </th>
+        <th scope="col">
+          Score
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |entry|}}
+        <tr class="{{if video.isDeleted 'deleted' ''}}">
+          <th scope="row">{{entry.rank}}</th>
+          <td>
+            {{html-img src=entry.user.imageUrl classNames=(array 'avatar')}}
+            &nbsp;&nbsp;
+            {{entry.user.name}}
+          </td>
+          <td>{{entry.score}}</td>
+        </tr>
+      {{else}}
+        <p id="blankslate">
+          No Leaderboard entries found
+        </p>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+
