@@ -35,7 +35,7 @@
           <tr class="{{if video.isDeleted 'deleted' ''}}">
             <th scope="row">{{add index 1}}</th>
             <td>
-              <img src="{{video.user.imageUrl}}" alt="Avatar" class="avatar dropdown-toggle small" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{html-img src=video.user.imageUrl classNames=(array 'avatar')}}
             </td>
             <td>
               {{#link-to "videos.show" video.id}}
