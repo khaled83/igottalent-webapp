@@ -13,6 +13,8 @@ export default Route.extend(InfinityRoute, {
     perPageParam: null,
     pageParam: "offset",
     totalPagesParam: "meta.page-count",
+    // return current user's videos
+    me: 'user'
   },
   
   beforeModel(/* transition */) {
@@ -20,7 +22,7 @@ export default Route.extend(InfinityRoute, {
       this.transitionTo('videos.index-admin'); // Implicitly aborts the on-going transition.
     }
   },
-  model: function() {
+  model: function() {    
     return this.infinityModel("video", this.get('params'));
   },
   

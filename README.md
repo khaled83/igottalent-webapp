@@ -51,6 +51,9 @@ First time create new heroku app:
 Deploy changes:
 * `git push heroku master`
 
+App url: 
+* https://frozen-mesa-62725.herokuapp.com
+
 ## Further Reading / Useful Links
 
 * [ember.js](https://emberjs.com/)

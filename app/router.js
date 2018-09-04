@@ -21,6 +21,8 @@ Router.map(function() {
     });
     this.route('index-admin');
   });
+  this.route('LeaderboardEntries', function() {
+  });
 });
 
 export default Router;

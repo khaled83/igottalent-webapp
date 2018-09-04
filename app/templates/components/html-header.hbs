@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="btn-group">
-    <img src="{{currentUser.user.imageUrl}}" alt="Avatar" class="avatar dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{html-img src=currentUser.user.imageUrl alt="Avatar" classNames=(array 'avatar' 'dropdown-toggle') style="cursor: pointer;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"}}
     {{#if currentUser.user.admin}}
       <span class="badge badge-danger" style="position: absolute; margin-top: 40px; opacity: 0.7; margin-left: 2px; width: 47px;">Admin</span>
     {{/if}}
@@ -18,6 +18,9 @@
       </li>
       <li class="nav-item">
         {{#link-to "videos" class="nav-link" }}Vidoes{{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "LeaderboardEntries" class="nav-link" }}Leaderboard{{/link-to}}
       </li>
     </ul>
   </div>

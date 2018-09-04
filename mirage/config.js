@@ -1,4 +1,9 @@
 export default function() {
+this.get('/LeaderboardEntries');
+this.get('/LeaderboardEntries/:id');
+this.post('/LeaderboardEntries');
+this.del('/LeaderboardEntries/:id');
+this.patch('/LeaderboardEntries/:id');
 this.get('/videos');
 this.get('/videos/:id');
 this.post('/videos');
